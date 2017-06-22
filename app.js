@@ -1,4 +1,5 @@
-var form = document.getElementById('HTMLform');
+var submitform = document.getElementById('HTMLform');
+var orderTable = document.getElementById('ordersTable');
 
 // var custName = '';
 // var custAddPhone = 0;
@@ -6,7 +7,7 @@ var form = document.getElementById('HTMLform');
 // var prodName = [];
 // var prodQuantity = 0;
 // var creditCard = 0;
-
+NewOrder.header = ['custName', 'custAddPhone', 'prodName', 'prodQuantity', 'creditCard'];
 NewOrder.all = [];
 
 function NewOrder (custName, custAddPhone, prodName, prodQuantity, creditCard) {
@@ -18,7 +19,22 @@ function NewOrder (custName, custAddPhone, prodName, prodQuantity, creditCard) {
   NewOrder.all.push(this);
 }
 
+function header() {
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = '';
+  trEl.appendChild(thEl);
+  for (var i = 0; i < NewOrder.header.length; i++) {
+    thEl = document.createElement('th');
+    thEl.textContent = NewOrder.header[i];
+    trEl.appendChild(thEl);
+    orderTable.appendChild(trEl);
+  }
+}
+header();
+
 function handleSubmit(event) {
+  console.log('I fuckn dont work');
   event.preventDefault();
   if ((!event.target.custName.value) || (!event.target.custAddPhone.value) || (!event.target.prodName.value) || (!event.target.prodQuantity.value) || (!event.target.creditCard.value)) {
     return alert('You have empty fields!');
@@ -40,4 +56,4 @@ function handleSubmit(event) {
 
 }
 
-form.addEventListener('submit', handleSubmit);
+submitform.addEventListener('submit', handleSubmit);
