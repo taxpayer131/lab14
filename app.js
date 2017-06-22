@@ -19,22 +19,31 @@ function NewOrder (custName, custAddPhone, prodName, prodQuantity, creditCard) {
   NewOrder.all.push(this);
 }
 
-function header() {
-  var trEl = document.createElement('tr');
-  var thEl = document.createElement('th');
-  thEl.textContent = '';
-  trEl.appendChild(thEl);
-  for (var i = 0; i < NewOrder.header.length; i++) {
-    thEl = document.createElement('th');
-    thEl.textContent = NewOrder.header[i];
-    trEl.appendChild(thEl);
-    orderTable.appendChild(trEl);
-  }
-}
-header();
+
+// NewOrder.prototype.render = function () {
+//   var trEl = document.createElement('tr')
+//   var tdEl = document.createElement('td')
+//   for (var i = 0; i < NewOrder.all.length; i++)
+//     tdEl = document.createElement('td');
+//     tdEl.textContent =
+// };
+
+// function header() {
+//   var trEl = document.createElement('tr');
+//   var thEl = document.createElement('th');
+//   thEl.textContent = '';
+//   trEl.appendChild(thEl);
+//   for (var i = 0; i < NewOrder.header.length; i++) {
+//     thEl = document.createElement('th');
+//     thEl.textContent = NewOrder.header[i];
+//     trEl.appendChild(thEl);
+//     orderTable.appendChild(trEl);
+//   }
+// }
+
+
 
 function handleSubmit(event) {
-  console.log('I fuckn dont work');
   event.preventDefault();
   if ((!event.target.custName.value) || (!event.target.custAddPhone.value) || (!event.target.prodName.value) || (!event.target.prodQuantity.value) || (!event.target.creditCard.value)) {
     return alert('You have empty fields!');
@@ -57,3 +66,5 @@ function handleSubmit(event) {
 }
 
 submitform.addEventListener('submit', handleSubmit);
+
+// header();
