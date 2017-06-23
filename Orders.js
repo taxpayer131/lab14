@@ -12,8 +12,7 @@ function NewOrder (custName, custAddPhone, prodName, prodQuantity, creditCard) {
   this.creditCard = creditCard;
   NewOrder.all.push(this);
 }
-
-new NewOrder ('Cow', 5, 'Cow', 4, 1);
+// new NewOrder ('Cow', 5, 'Cow', 4, 1);
 
 function header() {
   var trEl = document.createElement('tr');
@@ -53,5 +52,15 @@ function render () {
   }
 };
 
+function pullStorage() {
+  // if (localStorage.all){
+  console.log('pull');
+
+  // }
+  var storeAll = localStorage.getItem('all');
+  NewOrder.all = JSON.parse(storeAll);
+}
+
+pullStorage();
 header();
 render();

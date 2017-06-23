@@ -19,30 +19,6 @@ function NewOrder (custName, custAddPhone, prodName, prodQuantity, creditCard) {
   NewOrder.all.push(this);
 }
 
-
-// NewOrder.prototype.render = function () {
-//   var trEl = document.createElement('tr')
-//   var tdEl = document.createElement('td')
-//   for (var i = 0; i < NewOrder.all.length; i++)
-//     tdEl = document.createElement('td');
-//     tdEl.textContent =
-// };
-
-// function header() {
-//   var trEl = document.createElement('tr');
-//   var thEl = document.createElement('th');
-//   thEl.textContent = '';
-//   trEl.appendChild(thEl);
-//   for (var i = 0; i < NewOrder.header.length; i++) {
-//     thEl = document.createElement('th');
-//     thEl.textContent = NewOrder.header[i];
-//     trEl.appendChild(thEl);
-//     orderTable.appendChild(trEl);
-//   }
-// }
-
-
-
 function handleSubmit(event) {
   event.preventDefault();
   if ((!event.target.custName.value) || (!event.target.custAddPhone.value) || (!event.target.prodName.value) || (!event.target.prodQuantity.value) || (!event.target.creditCard.value)) {
@@ -62,9 +38,27 @@ function handleSubmit(event) {
   event.target.prodName.value = null;
   event.target.prodQuantity.value = null;
   event.target.creditCard.value = null;
-
+  pushStorage();
 }
 
-submitform.addEventListener('submit', handleSubmit);
+function pushStorage() {
+  console.log('push');
+  var storeAll = JSON.stringify(NewOrder.all);
+  localStorage.setItem('all', storeAll);
+  if (localStorage.all) {
+    NewOrder.all = storeAll;
+  }
+}
 
-// header();
+function pullStorage() {
+  // if (localStorage.all){
+  console.log('pull');
+
+  // }
+  var storeAll = localStorage.getItem('all');
+  NewOrder.all = JSON.parse(storeAll);
+}
+
+
+pullStorage();
+submitform.addEventListener('submit', handleSubmit);
